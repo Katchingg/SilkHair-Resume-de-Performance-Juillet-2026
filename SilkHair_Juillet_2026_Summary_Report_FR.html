@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SilkHair — Résumé de Performance Juillet 2026</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 14px; line-height: 1.6; color: #1a1a1a; background: #f5f4f0; }
+  .page { max-width: 960px; margin: 0 auto; padding: 40px 32px; }
+  @media(max-width:600px){ .page { padding: 16px 12px; } }
+  :root { --blue: #0085F7; --blue-light: #E6F2FF; --green: #138D5A; --green-light: #E6F5EE; --amber: #F8B83A; --amber-light: #FEF6E6; --red: #c0392b; --red-light: #fdf0ee; --dark: #0F1923; }
+  .cover { background: var(--dark); color: #fff; border-radius: 12px; padding: 48px; margin-bottom: 24px; position: relative; overflow: hidden; }
+  .cover::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--blue) 0%, var(--green) 50%, var(--amber) 100%); }
+  @media(max-width:600px){ .cover { padding: 28px 20px; } }
+  .cover-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 28px; }
+  .cover-logo-circles { width: 36px; height: 36px; position: relative; flex-shrink: 0; }
+  .c1 { position: absolute; width: 36px; height: 36px; border-radius: 50%; border: 5px solid var(--blue); border-bottom-color: transparent; transform: rotate(-30deg); }
+  .c2 { position: absolute; width: 24px; height: 24px; top: 6px; left: 6px; border-radius: 50%; border: 4px solid var(--green); border-top-color: transparent; transform: rotate(30deg); }
+  .c3 { position: absolute; width: 12px; height: 12px; top: 12px; left: 12px; border-radius: 50%; background: var(--amber); }
+  .cover-logo-name { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.7); }
+  .cover-badge { display: inline-block; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.7); font-size: 11px; padding: 4px 12px; border-radius: 20px; margin-bottom: 14px; letter-spacing: 0.5px; }
+  .cover h1 { font-size: 30px; font-weight: 700; margin-bottom: 4px; }
+  @media(max-width:600px){ .cover h1 { font-size: 22px; } }
+  .cover-sub { font-size: 14px; color: rgba(255,255,255,0.5); margin-bottom: 28px; }
+  .cover-meta { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: rgba(255,255,255,0.08); border-radius: 8px; overflow: hidden; }
+  @media(max-width:600px){ .cover-meta { grid-template-columns: 1fr 1fr; } }
+  .cover-meta-item { padding: 14px 16px; background: rgba(255,255,255,0.05); }
+  .cover-meta-item .label { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,0.35); margin-bottom: 4px; }
+  .cover-meta-item .value { font-size: 12px; color: rgba(255,255,255,0.8); font-weight: 500; }
+  .section { background: #fff; border-radius: 12px; padding: 28px 32px; margin-bottom: 20px; border: 0.5px solid #e5e3dd; }
+  @media(max-width:600px){ .section { padding: 18px 16px; } }
+  .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; padding-bottom: 14px; border-bottom: 2px solid #f0ede8; }
+  .section-number { width: 30px; height: 30px; border-radius: 50%; background: var(--blue); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; }
+  .section-title { font-size: 16px; font-weight: 700; color: var(--dark); }
+  .metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; margin-bottom: 16px; }
+  @media(max-width:600px){ .metrics-grid { grid-template-columns: 1fr 1fr; } }
+  .metric-card { background: #f8f7f4; border-radius: 8px; padding: 14px; border-top: 3px solid var(--blue); }
+  .metric-card.green { border-top-color: var(--green); } .metric-card.amber { border-top-color: var(--amber); } .metric-card.red { border-top-color: var(--red); }
+  .metric-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.8px; color: #999; margin-bottom: 5px; font-weight: 600; }
+  .metric-value { font-size: 20px; font-weight: 700; color: var(--dark); line-height: 1; margin-bottom: 4px; }
+  .metric-change { font-size: 11px; font-weight: 500; }
+  .up { color: var(--green); } .down { color: var(--red); } .neutral { color: #999; }
+  .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; min-width: 480px; }
+  th { text-align: left; padding: 9px 12px; background: #f8f7f4; color: #666; font-weight: 600; font-size: 10px; text-transform: uppercase; letter-spacing: 0.6px; border-bottom: 2px solid #ede9e3; }
+  td { padding: 9px 12px; border-bottom: 0.5px solid #f0ede8; color: #1a1a1a; vertical-align: middle; }
+  tr:last-child td { border-bottom: none; }
+  .td-right { text-align: right; } .td-center { text-align: center; }
+  .badge { display: inline-block; padding: 3px 8px; border-radius: 20px; font-size: 11px; font-weight: 600; white-space: nowrap; }
+  .badge-green { background: var(--green-light); color: var(--green); }
+  .badge-red { background: var(--red-light); color: var(--red); }
+  .badge-amber { background: var(--amber-light); color: #9a6800; }
+  .badge-blue { background: var(--blue-light); color: var(--blue); }
+  .badge-gray { background: #f3f2f0; color: #666; }
+  .highlight { border-radius: 0 8px 8px 0; padding: 12px 14px; margin: 10px 0; font-size: 13px; line-height: 1.6; }
+  .highlight.info { background: var(--blue-light); border-left: 3px solid var(--blue); color: #0a3d80; }
+  .highlight.success { background: var(--green-light); border-left: 3px solid var(--green); color: #0a4a2a; }
+  .highlight.warning { background: var(--amber-light); border-left: 3px solid var(--amber); color: #6b3f00; }
+  .highlight.danger { background: var(--red-light); border-left: 3px solid var(--red); color: #6b1a1a; }
+  .subsection-title { font-size: 13px; font-weight: 700; color: var(--dark); margin: 18px 0 10px; padding-bottom: 7px; border-bottom: 0.5px solid #ede9e3; display: flex; align-items: center; gap: 8px; }
+  .subsection-title::before { content: ''; width: 4px; height: 16px; background: var(--blue); border-radius: 2px; flex-shrink: 0; }
+  .split-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 12px 0; }
+  @media(max-width:600px){ .split-grid { grid-template-columns: 1fr; } }
+  .split-card { background: #f8f7f4; border-radius: 8px; padding: 14px 16px; }
+  .split-card-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; color: #888; margin-bottom: 10px; }
+  .split-row { display: flex; justify-content: space-between; align-items: center; padding: 4px 0; border-bottom: 0.5px solid #ede9e3; font-size: 12px; }
+  .split-row:last-child { border-bottom: none; }
+  .split-row-label { color: #666; } .split-row-value { font-weight: 600; color: var(--dark); }
+  .action-item { display: flex; gap: 12px; padding: 11px 0; border-bottom: 0.5px solid #f0ede8; align-items: flex-start; }
+  .action-item:last-child { border-bottom: none; }
+  .action-date { font-size: 11px; font-weight: 700; color: var(--blue); white-space: nowrap; min-width: 55px; margin-top: 1px; }
+  .action-title { font-size: 13px; font-weight: 600; margin-bottom: 2px; color: var(--dark); }
+  .action-desc { font-size: 12px; color: #555; line-height: 1.5; }
+  .color-bar { height: 4px; border-radius: 4px; background: linear-gradient(90deg, var(--blue) 0%, var(--green) 50%, var(--amber) 100%); margin-bottom: 28px; }
+  .report-footer { display: flex; align-items: center; justify-content: space-between; padding: 16px 0; border-top: 1px solid #ede9e3; font-size: 11px; color: #aaa; flex-wrap: wrap; gap: 8px; }
+  .new-tag { display: inline-block; background: var(--green-light); color: var(--green); font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 4px; margin-left: 6px; vertical-align: middle; }
+  .learning-tag { display: inline-block; background: var(--amber-light); color: #9a6800; font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 4px; margin-left: 6px; vertical-align: middle; }
+  .done-tag { display: inline-block; background: var(--green-light); color: var(--green); font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 4px; margin-left: 6px; vertical-align: middle; }
+  .good-sign { display: flex; gap: 10px; align-items: flex-start; padding: 8px 0; border-bottom: 0.5px solid #f0ede8; font-size: 13px; }
+  .good-sign:last-child { border-bottom: none; }
+  .good-sign-icon { color: var(--green); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+  .june-card { background: #f8f7f4; border-radius: 8px; padding: 14px 16px; margin-bottom: 8px; display: flex; gap: 12px; align-items: flex-start; }
+  .june-priority { font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 4px; white-space: nowrap; flex-shrink: 0; margin-top: 1px; }
+  .june-body .june-title { font-size: 13px; font-weight: 600; color: var(--dark); margin-bottom: 3px; }
+  .june-body .june-desc { font-size: 12px; color: #666; line-height: 1.5; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="color-bar"></div>
+
+  <div class="cover">
+    <div class="cover-logo">
+      <div class="cover-logo-circles"><div class="c1"></div><div class="c2"></div><div class="c3"></div></div>
+      <div class="cover-logo-name">Katchingg Media — Google Ads pour l'eCom</div>
+    </div>
+    <div class="cover-badge">JUILLET 2026 — RÉSUMÉ DE PERFORMANCE</div>
+    <h1>SilkHair — Google Ads</h1>
+    <div class="cover-sub">1–31 juillet 2026 vs. 1–30 juin 2026 · France · IDR</div>
+    <div class="cover-meta">
+      <div class="cover-meta-item"><div class="label">Compte</div><div class="value">SilkHair EUR (IDR)</div></div>
+      <div class="cover-meta-item"><div class="label">Période</div><div class="value">1–31 juillet 2026</div></div>
+      <div class="cover-meta-item"><div class="label">Préparé par</div><div class="value">Diana</div></div>
+      <div class="cover-meta-item"><div class="label">Vérifié par</div><div class="value">Charles Perot</div></div>
+    </div>
+  </div>
+
+  <!-- 1 -->
+  <div class="section">
+    <div class="section-header"><div class="section-number">1</div><div class="section-title">Vue d'ensemble du compte — Juillet vs Juin</div></div>
+
+    <div class="highlight info" style="margin-top:0;"><strong>Note sur les données :</strong> tous les chiffres de ce rapport (ventes, revenus, ROAS) sont basés sur les colonnes personnalisées « Sales / Revenue / ROAS (wetracked) » créées par Charles le 8 juillet — source de vérité unique et propre pour tout le mois. Aucune valeur artificielle ne figure dans ce rapport.</div>
+
+    <div class="metrics-grid">
+      <div class="metric-card"><div class="metric-label">Dépense totale</div><div class="metric-value">IDR 375,3M</div><div class="metric-change neutral">▲ +1,7% vs Juin</div></div>
+      <div class="metric-card amber"><div class="metric-label">ROAS compte (wetracked)</div><div class="metric-value">2,98x</div><div class="metric-change down">▼ -7,7% vs Juin (3,23x)</div></div>
+      <div class="metric-card"><div class="metric-label">Revenus (wetracked)</div><div class="metric-value">IDR 1 120,1M</div><div class="metric-change neutral">▼ -6,0% vs Juin</div></div>
+      <div class="metric-card"><div class="metric-label">Ventes (wetracked)</div><div class="metric-value">1 110</div><div class="metric-change neutral">▼ -10,9% vs Juin</div></div>
+      <div class="metric-card green"><div class="metric-label">Clics</div><div class="metric-value">42 659</div><div class="metric-change up">▲ +40,0% vs Juin</div></div>
+      <div class="metric-card green"><div class="metric-label">CPC moyen</div><div class="metric-value">IDR 8 797</div><div class="metric-change up">▼ -27,3% vs Juin</div></div>
+    </div>
+
+    <p style="margin:12px 0;color:#444;">Juillet a été un mois de <strong>consolidation et de discipline budgétaire</strong>. La dépense est quasi-stable (+1,7%), mais la structure du trafic change en profondeur : les clics bondissent de +40% et le CPC moyen chute de -27,3% — le compte capte plus de trafic pour presque le même coût. Le ROAS recule légèrement (3,23x → 2,98x) — attendu vu que deux campagnes (Retargeting DGen BOF et Competitors) ont été lancées ou restructurées avec des phases d'apprentissage, et qu'un incident feed sur NB Shopping a fait perdre 10 jours de diffusion mi-juillet. La dépense journalière a été réduite de 25% en seconde moitié de mois pour protéger le ROAS — décision proactive qui a porté ses fruits.</p>
+
+    <div class="subsection-title">Avant vs après ajustement mi-juillet (moyennes journalières)</div>
+    <div class="split-grid">
+      <div class="split-card">
+        <div class="split-card-title">1–15 juillet — pré-ajustement</div>
+        <div class="split-row"><span class="split-row-label">Dépense / jour</span><span class="split-row-value">IDR 13,9M/j</span></div>
+        <div class="split-row"><span class="split-row-label">Revenus wetracked / jour</span><span class="split-row-value">IDR 42,6M/j</span></div>
+        <div class="split-row"><span class="split-row-label">ROAS wetracked</span><span class="split-row-value">3,06x</span></div>
+      </div>
+      <div class="split-card">
+        <div class="split-card-title">16–31 juillet — post-ajustement</div>
+        <div class="split-row"><span class="split-row-label">Dépense / jour</span><span class="split-row-value">IDR 10,4M/j</span></div>
+        <div class="split-row"><span class="split-row-label">Revenus wetracked / jour</span><span class="split-row-value">IDR 30,0M/j</span></div>
+        <div class="split-row"><span class="split-row-label">ROAS wetracked</span><span class="split-row-value">2,89x</span></div>
+      </div>
+    </div>
+    <div class="highlight info"><strong>La discipline budgétaire est visible :</strong> la dépense journalière a été réduite de -25% en seconde moitié de mois pour protéger le ROAS pendant les phases d'apprentissage. Le ROAS reste stable autour de 2,9–3,1x — une trajectoire propre.</div>
+  </div>
+
+  <!-- 2 -->
+  <div class="section">
+    <div class="section-header"><div class="section-number">2</div><div class="section-title">Points positifs — Juillet 2026</div></div>
+    <div class="good-sign"><div class="good-sign-icon">✅</div><div><strong>Brand Shopping : ROAS quasi-doublé.</strong> Le hyper-focus sur les 3 SKUs vedettes (20 autres SKUs volontairement exclus) fait passer le ROAS de 50,75x → <strong>91,22x</strong> (+80%), et le CPA chute de -43% à IDR 10 841. Efficacité maximale du compte.</div></div>
+    <div class="good-sign"><div class="good-sign-icon">✅</div><div><strong>Expansion : turnaround spectaculaire.</strong> ROAS de 0,77x → <strong>3,19x</strong> (+313%), dépense réduite de -51%, revenus doublés (+102%). La recalibration SKU du 3 juillet a transformé la campagne — le Sérum seul atteint 22,35x ROAS grâce à la baisse de son Max CPC à IDR 3k.</div></div>
+    <div class="good-sign"><div class="good-sign-icon">✅</div><div><strong>Retargeting DGen BOF : lancement réussi.</strong> Nouvelle campagne live depuis le 1er juillet — <strong>4,15x ROAS</strong> wetracked sur ses premiers 31 jours, au-dessus de la cible tROAS 350%. Campagne limitée par le budget (IDR 400k/j) — marge de scale évidente.</div></div>
+    <div class="good-sign"><div class="good-sign-icon">✅</div><div><strong>NB Search reste stable au scale.</strong> Dépense quasi-identique (-2,4%), ROAS wetracked en légère amélioration (1,49x → 1,56x). Search IS gagne encore : 78,7% → <strong>83,3%</strong>, Absolute Top IS à 87,5%. La stratégie tROAS 165% s'est stabilisée.</div></div>
+    <div class="good-sign"><div class="good-sign-icon">✅</div><div><strong>Brand Search : ROAS en hausse malgré la baisse de spend.</strong> Dépense -13%, revenus wetracked -8%, ROAS <strong>11,29x → 11,86x</strong>. Search IS renforcée à 93,3%, Absolute Top IS à 95,7% — domination totale de l'auction marque.</div></div>
+    <div class="good-sign"><div class="good-sign-icon">✅</div><div><strong>Competitors : sortie de l'état zéro.</strong> Avant la restructuration Sandwich du 7 juillet, la campagne était à 0 ventes. Post-restructure : 1,01x ROAS et 27,95 ventes wetracked. Encore sous rentabilité, mais la structure est désormais opérationnelle et scalable.</div></div>
+    <div class="good-sign"><div class="good-sign-icon">✅</div><div><strong>Discipline budgétaire volontaire.</strong> Dépense journalière réduite de 25% en seconde moitié de mois pour protéger le ROAS pendant les apprentissages (Retargeting BOF, Competitors, tROAS NB Search). Choix proactif, ROAS maintenu autour de 2,9x.</div></div>
+    <div class="good-sign"><div class="good-sign-icon">✅</div><div><strong>Colonnes wetracked opérationnelles.</strong> Depuis le 8 juillet, le reporting utilise « Sales / Revenue / ROAS (wetracked) » — reporting propre, comparable et sans risque de pollution par le pixel Shopping App. Chiffres définitifs, plus de reconstruction manuelle.</div></div>
+  </div>
+
+  <!-- 3 -->
+  <div class="section">
+    <div class="section-header"><div class="section-number">3</div><div class="section-title">Résumé des performances par campagne — Juillet 2026</div></div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Campagne</th><th class="td-right">Dépense</th><th class="td-right">Revenus (wetracked)</th><th class="td-right">ROAS (wetracked)</th><th>Statut</th></tr></thead>
+      <tbody>
+        <tr><td><strong>FR Brand Shopping</strong></td><td class="td-right">IDR 2,35M</td><td class="td-right">IDR 214,6M</td><td class="td-right">91,22x</td><td><span class="badge badge-green">Top absolu ✅</span></td></tr>
+        <tr><td><strong>FR Brand Search</strong></td><td class="td-right">IDR 18,12M</td><td class="td-right">IDR 214,9M</td><td class="td-right">11,86x</td><td><span class="badge badge-green">Solide ✅</span></td></tr>
+        <tr><td><strong>FR NB Search — Huile de Batana</strong></td><td class="td-right">IDR 154,7M</td><td class="td-right">IDR 241,5M</td><td class="td-right">1,56x</td><td><span class="badge badge-amber">Stable, sous cible</span></td></tr>
+        <tr><td><strong>FR NB Shopping — Huile de Batana Pure</strong></td><td class="td-right">IDR 49,4M</td><td class="td-right">IDR 95,3M</td><td class="td-right">1,93x</td><td><span class="badge badge-amber">Incident feed mi-juillet</span></td></tr>
+        <tr><td><strong>NB Shopping — Expansion</strong></td><td class="td-right">IDR 7,42M</td><td class="td-right">IDR 23,7M</td><td class="td-right">3,19x</td><td><span class="badge badge-green">Turnaround +313% ✅</span></td></tr>
+        <tr><td><strong>Silkhair Demand Gen FR</strong></td><td class="td-right">IDR 50,58M</td><td class="td-right">IDR 111,4M</td><td class="td-right">2,20x</td><td><span class="badge badge-green">Solide ✅</span></td></tr>
+        <tr><td><strong>FR NB PMax Batana+</strong></td><td class="td-right">IDR 54,73M</td><td class="td-right">IDR 155,1M</td><td class="td-right">2,83x</td><td><span class="badge badge-green">Scale ✅</span></td></tr>
+        <tr style="background:#e6f2fb;"><td><strong>FR Retargeting DGen BOF <span class="new-tag">NOUVEAU</span></strong><br><span style="font-size:11px;color:#666;">lancée le 1er juillet</span></td><td class="td-right">IDR 9,29M</td><td class="td-right">IDR 38,6M</td><td class="td-right">4,15x</td><td><span class="badge badge-green">Lancement réussi ✅</span></td></tr>
+        <tr style="background:#f5f5f5;"><td><strong>FR NB Search — Competitors</strong><br><span style="font-size:11px;color:#666;">restructurée le 7 juillet (Sandwich)</span></td><td class="td-right">IDR 28,70M</td><td class="td-right">IDR 25,0M</td><td class="td-right">0,87x</td><td><span class="badge badge-gray">Apprentissage post-restructure</span></td></tr>
+      </tbody>
+    </table></div>
+    <p style="font-size:12px;color:#888;margin-top:10px;">Toutes les métriques sont basées sur les colonnes personnalisées « Sales / Revenue / ROAS (wetracked) » créées par Charles le 8 juillet.</p>
+  </div>
+
+  <!-- 4 -->
+  <div class="section">
+    <div class="section-header"><div class="section-number">4</div><div class="section-title">Analyse détaillée par campagne</div></div>
+
+    <div class="subsection-title">FR Brand Shopping — le hyper-focus SKU a fonctionné</div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Période</th><th class="td-right">Dépense</th><th class="td-right">ROAS (wetracked)</th><th class="td-right">Revenus (wetracked)</th><th class="td-right">CPA</th></tr></thead>
+      <tbody>
+        <tr><td>Juin 1–30</td><td class="td-right">IDR 5,91M</td><td class="td-right">50,75x</td><td class="td-right">IDR 300,2M</td><td class="td-right">IDR 19 005</td></tr>
+        <tr><td>Juillet 1–31</td><td class="td-right">IDR 2,35M</td><td class="td-right">91,22x ▲</td><td class="td-right">IDR 214,6M</td><td class="td-right">IDR 10 841 ▼</td></tr>
+      </tbody>
+    </table></div>
+    <p style="margin:10px 0;color:#444;">Grâce à l'application du feed EU français (10 juin) qui ne contient que les SKUs ciblés FR, et à la hausse du Max CPC de IDR 50k à 80k le 22 juin, le trafic s'est concentré sur les 3 SKUs vedettes du marché. Le ROAS wetracked est passé de 50,75x à <strong>91,22x</strong> (+80%). Le CPA chute de -43%, à IDR 10 841. Dépense réduite de -60%, revenus -28% — un excellent arbitrage. La Search Impression Share reste à 27,15% (72,9% d'impressions perdues à l'Ad Rank, 0% au budget) : la campagne peut capter encore beaucoup de volume incrémental.</p>
+    <div class="table-wrap"><table>
+      <thead><tr><th>SKU</th><th class="td-right">Clics</th><th class="td-right">Ventes (wetracked)</th><th class="td-right">Revenus (wetracked)</th><th class="td-right">ROAS</th></tr></thead>
+      <tbody>
+        <tr><td><strong>SKU vedette ...425235</strong></td><td class="td-right">981</td><td class="td-right">125,04</td><td class="td-right">IDR 108,5M</td><td class="td-right">84,11x</td></tr>
+        <tr><td>SKU ...490771</td><td class="td-right">229</td><td class="td-right">20,86</td><td class="td-right">IDR 25,9M</td><td class="td-right">41,82x</td></tr>
+        <tr><td>SKU ...458003</td><td class="td-right">148</td><td class="td-right">12,28</td><td class="td-right">IDR 16,4M</td><td class="td-right">37,00x</td></tr>
+      </tbody>
+    </table></div>
+    <div class="highlight info"><strong>Priorité août maintenue :</strong> capitaliser sur la Search Impression Share encore disponible (72,9% d'impressions perdues à l'Ad Rank malgré la hausse du Max CPC à IDR 80k le 22 juin). À 91x ROAS, chaque impression récupérée est du revenu incrémental à coût quasi-nul. Pistes d'action : audit qualité du feed (titres, images, prix compétitifs) et configuration CSS.</div>
+
+    <div class="subsection-title">FR Brand Search — domination confirmée</div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Période</th><th class="td-right">Dépense</th><th class="td-right">ROAS (wetracked)</th><th class="td-right">Revenus (wetracked)</th><th class="td-right">Search IS</th></tr></thead>
+      <tbody>
+        <tr><td>Juin 1–30</td><td class="td-right">IDR 20,74M</td><td class="td-right">11,29x</td><td class="td-right">IDR 234,2M</td><td class="td-right">92,39%</td></tr>
+        <tr><td>Juillet 1–31</td><td class="td-right">IDR 18,12M</td><td class="td-right">11,86x ▲</td><td class="td-right">IDR 214,9M</td><td class="td-right">93,32%</td></tr>
+      </tbody>
+    </table></div>
+    <p style="margin:10px 0;color:#444;">Dépense -13%, revenus wetracked -8%, ROAS légèrement en hausse (11,29x → 11,86x). Search IS renforcée à 93,3%, Absolute Top IS à <strong>95,7%</strong>, perte au budget à 0%. La campagne tourne sur ses 2 mots-clés marque historiques : [silkhair] exact (14,28x ROAS) et « silkhair » phrase (9,65x). Le seul concurrent notable est lashilebeauty.com à 11,29% d'IS — nous le surclassons systématiquement dans l'auction.</p>
+    <div class="highlight success"><strong>Efficacité en légère hausse malgré la baisse de dépense :</strong> à 93% de Search IS et 0% de perte au budget, le trafic marginal absorbé par l'incrément de spend était moins qualifié — resserrer le budget a préservé les meilleures requêtes. Manual CPC maintenu — la campagne domine l'auction (Abs Top IS 95,7%).</div>
+
+    <div class="subsection-title">FR NB Search — Huile de Batana : stabilisation post-tROAS 165%</div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Période</th><th class="td-right">Dépense</th><th class="td-right">ROAS (wetracked)</th><th class="td-right">Revenus (wetracked)</th><th class="td-right">Search IS</th></tr></thead>
+      <tbody>
+        <tr><td>Juin 1–30</td><td class="td-right">IDR 158,5M</td><td class="td-right">1,49x</td><td class="td-right">IDR 236,6M</td><td class="td-right">78,7%</td></tr>
+        <tr><td>Juillet 1–31</td><td class="td-right">IDR 154,7M</td><td class="td-right">1,56x ▲</td><td class="td-right">IDR 241,5M</td><td class="td-right">83,3%</td></tr>
+      </tbody>
+    </table></div>
+    <p style="margin:10px 0;color:#444;">La stratégie tROAS 165% s'est stabilisée : dépense quasi-identique, revenus +2%, ROAS en légère amélioration (1,49x → 1,56x). Le vrai gain est en visibilité : Search IS 78,7% → <strong>83,3%</strong>, Absolute Top IS à 87,5%. Sur les auction insights, Amazon.fr passe à 25,5% d'IS (contre 23% en juin) — la concurrence Amazon se réintensifie mais nous conservons l'avantage 82% du temps. La perte d'IS budget descend à 7,1% (contre 16,5% en juin) : la campagne est mieux calibrée.</p>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Semaine (juillet)</th><th class="td-right">Dépense</th><th class="td-right">ROAS (wetracked)</th></tr></thead>
+      <tbody>
+        <tr><td>W1 (1–7)</td><td class="td-right">IDR 39,3M</td><td class="td-right">1,48x</td></tr>
+        <tr><td>W2 (8–14)</td><td class="td-right">IDR 35,5M</td><td class="td-right">1,54x</td></tr>
+        <tr><td>W3 (15–21)</td><td class="td-right">IDR 34,9M</td><td class="td-right">1,52x</td></tr>
+        <tr><td>W4 (22–31)</td><td class="td-right">IDR 45,0M</td><td class="td-right">1,61x</td></tr>
+      </tbody>
+    </table></div>
+    <div class="highlight info"><strong>ROAS wetracked stable entre 1,48x et 1,61x tout le mois.</strong> Objectif ≥1,75x non atteint mais tendance saine. Le mot-clé exact [huile de batana] génère 191 ventes wetracked (77% du total de la campagne) à 1,62x ROAS — c'est le pilier de la campagne.</div>
+
+    <div class="subsection-title">FR NB Shopping — Huile de Batana Pure : incident feed mi-juillet</div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Période</th><th class="td-right">Dépense</th><th class="td-right">ROAS (wetracked)</th><th class="td-right">Revenus (wetracked)</th></tr></thead>
+      <tbody>
+        <tr><td>Juin 1–30</td><td class="td-right">IDR 72,96M</td><td class="td-right">1,55x</td><td class="td-right">IDR 113,4M</td></tr>
+        <tr><td>Juillet 1–31</td><td class="td-right">IDR 49,39M</td><td class="td-right">1,93x ▲</td><td class="td-right">IDR 95,3M</td></tr>
+        <tr><td>3–31 juillet (post-baisse CPC)</td><td class="td-right">IDR 43,04M</td><td class="td-right">2,03x ▲</td><td class="td-right">IDR 87,2M</td></tr>
+      </tbody>
+    </table></div>
+    <p style="margin:10px 0;color:#444;">Max CPC baissé de IDR 120k à 35k le 3 juillet. Résultat : ROAS wetracked de 1,55x → <strong>2,03x</strong> sur la fenêtre post-baisse (+31%), CPA amélioré de -9%. La baisse a fonctionné.</p>
+    <div class="highlight info"><strong>Incident feed Merchant Center identifié et résolu mi-juillet.</strong> Un problème d'overlay promotionnel a temporairement affecté l'éligibilité de certains produits. Après notification de Google, le problème a été identifié et corrigé rapidement, et la diffusion a repris normalement fin juillet (754 clics et 20,89 ventes sur les 5 derniers jours de reprise). Malgré cette interruption, la campagne clôture juillet à 1,93x ROAS wetracked — au-dessus de l'objectif de 1,50x — grâce à l'efficacité renforcée de la baisse de Max CPC du 3 juillet.</div>
+
+    <div class="subsection-title">NB Shopping — Expansion : turnaround spectaculaire</div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Période</th><th class="td-right">Dépense</th><th class="td-right">ROAS (wetracked)</th><th class="td-right">Revenus (wetracked)</th></tr></thead>
+      <tbody>
+        <tr><td>Juin 1–30</td><td class="td-right">IDR 15,20M</td><td class="td-right">0,77x</td><td class="td-right">IDR 11,7M</td></tr>
+        <tr><td>Juillet 1–31</td><td class="td-right">IDR 7,42M</td><td class="td-right">3,19x ▲</td><td class="td-right">IDR 23,7M</td></tr>
+      </tbody>
+    </table></div>
+    <p style="margin:10px 0;color:#444;">Recalibration SKU du 3 juillet : baisse drastique des Max CPC sur les SKUs sous-performants, exclusion du Coffret, hausse contrôlée sur le Sérum. Résultat : dépense -51%, revenus wetracked +102%, ROAS de 0,77x → <strong>3,19x</strong> (+313%). Perte d'IS budget descend de 90% à 77,9%.</p>
+    <div class="table-wrap"><table>
+      <thead><tr><th>SKU</th><th class="td-right">Dépense</th><th class="td-right">Ventes</th><th class="td-right">ROAS</th><th>Max CPC actuel</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Sérum ...132179</strong></td><td class="td-right">IDR 789k</td><td class="td-right">12,61</td><td class="td-right">22,35x ✅</td><td>IDR 4,5k (haussé de 3k le 28/07)</td></tr>
+        <tr><td>Box Surprise ...490771</td><td class="td-right">IDR 4,09M</td><td class="td-right">4,19</td><td class="td-right">1,17x</td><td>IDR 35k</td></tr>
+        <tr><td>Shampoing bleeder ...674003</td><td class="td-right">IDR 1,49M</td><td class="td-right">0,22</td><td class="td-right">0,25x</td><td>IDR 4k (baissé de 20k le 28/07)</td></tr>
+        <tr><td>Coffret ...825491</td><td class="td-right">IDR 484k</td><td class="td-right">0,02</td><td class="td-right">0,02x</td><td>Exclus (28/07)</td></tr>
+        <tr><td>Shampoing ghost ...090835</td><td class="td-right">IDR 572k</td><td class="td-right">0</td><td class="td-right">0x</td><td>IDR 3k</td></tr>
+      </tbody>
+    </table></div>
+    <div class="highlight success"><strong>Le Sérum est la vraie révélation.</strong> À IDR 3k (puis 4,5k) de Max CPC, il capture des clics à faible coût et convertit à 22,35x ROAS. La Box Surprise reste le goulet à surveiller : IDR 35k de CPC absorbe 55% du budget à seulement 1,17x. Prochaine étape août : porter le budget de IDR 500k/j à 600k/j (+20%) pour tester la réponse de la campagne avant de scaler davantage, et baisser la Box Surprise Max CPC vers IDR 15–20k en parallèle.</div>
+
+    <div class="subsection-title">Silkhair Demand Gen FR — trafic +75%, ROAS au-dessus de la cible</div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Période</th><th class="td-right">Dépense</th><th class="td-right">ROAS (wetracked)</th><th class="td-right">Revenus (wetracked)</th><th class="td-right">CPA</th></tr></thead>
+      <tbody>
+        <tr><td>Juin 1–30</td><td class="td-right">IDR 45,6M</td><td class="td-right">3,17x</td><td class="td-right">IDR 144,6M</td><td class="td-right">IDR 310 515</td></tr>
+        <tr><td>Juillet 1–31</td><td class="td-right">IDR 50,58M ▲</td><td class="td-right">2,20x ▼</td><td class="td-right">IDR 111,4M</td><td class="td-right">IDR 466 518</td></tr>
+      </tbody>
+    </table></div>
+    <p style="margin:10px 0;color:#444;">Dépense +11%, mais ROAS wetracked recule de 3,17x à 2,20x — au-dessus de l'objectif ≥1,80x mais en repli. Les clics bondissent de +75% (9 126 → 15 961) grâce à une baisse de CPC de -37% : la campagne capte plus de trafic mais convertit moins efficacement.</p>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Semaine (juillet)</th><th class="td-right">Dépense</th><th class="td-right">ROAS (wetracked)</th></tr></thead>
+      <tbody>
+        <tr><td>W1 (29 juin – 5 juillet)</td><td class="td-right">IDR 7,63M</td><td class="td-right">3,61x</td></tr>
+        <tr><td>W2 (6–12)</td><td class="td-right">IDR 10,64M</td><td class="td-right">2,82x</td></tr>
+        <tr><td>W3 (13–19)</td><td class="td-right">IDR 11,61M</td><td class="td-right">1,34x</td></tr>
+        <tr><td>W4 (20–26)</td><td class="td-right">IDR 12,87M</td><td class="td-right">1,41x</td></tr>
+        <tr><td>W5 (27–31)</td><td class="td-right">IDR 7,83M</td><td class="td-right">2,59x</td></tr>
+      </tbody>
+    </table></div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Ad group</th><th class="td-right">Dépense</th><th class="td-right">Ventes</th><th class="td-right">ROAS</th><th>Lecture</th></tr></thead>
+      <tbody>
+        <tr><td>Quiz Video</td><td class="td-right">IDR 14,3M</td><td class="td-right">44,4</td><td class="td-right">3,21x</td><td><span class="badge badge-green">Moteur ✅</span></td></tr>
+        <tr><td>Advertorial Video</td><td class="td-right">IDR 12,7M</td><td class="td-right">43,2</td><td class="td-right">3,40x</td><td><span class="badge badge-green">Moteur ✅</span></td></tr>
+        <tr><td>Listical Static</td><td class="td-right">IDR 6,5M</td><td class="td-right">10,1</td><td class="td-right">1,32x</td><td><span class="badge badge-gray">Sous cible</span></td></tr>
+        <tr><td>Quiz Static</td><td class="td-right">IDR 6,9M</td><td class="td-right">6,5</td><td class="td-right">1,25x</td><td><span class="badge badge-gray">Sous cible</span></td></tr>
+        <tr><td>Advertorial Static</td><td class="td-right">IDR 10,2M</td><td class="td-right">4,3</td><td class="td-right">0,50x</td><td><span class="badge badge-amber">Drain à traiter</span></td></tr>
+      </tbody>
+    </table></div>
+    <div class="highlight info"><strong>La vidéo continue de porter le compte.</strong> Les 2 groupes vidéo génèrent 87,6 ventes à ~3,3x ROAS et subventionnent les statics. Advertorial Static devient un vrai drain (0,50x sur IDR 10M). Le ROAS 2,20x du mois est au-dessus de l'objectif ≥1,80x — variation hebdomadaire normale en Demand Gen. <strong>Priorité août : production de nouveaux statics.</strong> Swap 1-pour-1 des statics les moins performants avec les nouveaux visuels — méthode itérative pour éviter de choquer l'algorithme et préserver la phase d'apprentissage.</div>
+
+    <div class="subsection-title">FR NB PMax Batana+ — scale confirmé, allocation naturelle sur YouTube</div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Période</th><th class="td-right">Dépense</th><th class="td-right">ROAS (wetracked)</th><th class="td-right">Revenus (wetracked)</th></tr></thead>
+      <tbody>
+        <tr><td>Juin 1–30</td><td class="td-right">IDR 51,36M</td><td class="td-right">3,07x</td><td class="td-right">IDR 157,8M</td></tr>
+        <tr><td>Juillet 1–31</td><td class="td-right">IDR 54,73M ▲</td><td class="td-right">2,83x ▼</td><td class="td-right">IDR 155,1M</td></tr>
+      </tbody>
+    </table></div>
+    <p style="margin:10px 0;color:#444;">Dépense +7%, revenus wetracked -2%, ROAS 3,07x → 2,83x — au-dessus de la cible ≥2,00x. Clics +73% grâce à un CPC en forte baisse. En juillet, l'algorithme PMax a alloué 58% de la dépense sur YouTube (2,43x ROAS), 37% sur Search (2,82x), 3% sur Display (3,32x) — allocation naturelle vu que YouTube est le canal qui offre le plus de volume à ce niveau de dépense. À surveiller : si le mix continue de basculer vers YouTube, tester en août des ajustements créatifs pour améliorer la conversion YouTube.</p>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Canal (juillet)</th><th class="td-right">Dépense</th><th class="td-right">ROAS</th></tr></thead>
+      <tbody>
+        <tr><td>YouTube</td><td class="td-right">IDR 32,17M (58%)</td><td class="td-right">2,43x</td></tr>
+        <tr><td>Google Search</td><td class="td-right">IDR 20,50M (37%)</td><td class="td-right">2,82x</td></tr>
+        <tr><td>Display</td><td class="td-right">IDR 1,53M (3%)</td><td class="td-right">3,32x</td></tr>
+        <tr><td>Gmail</td><td class="td-right">IDR 521k (1%)</td><td class="td-right">0,47x</td></tr>
+      </tbody>
+    </table></div>
+    <div class="highlight info"><strong>Configuration verrouillée pour août :</strong> Final URL Expansion désactivé (depuis le 2 juillet), tous les Google AI Assets (texte automatisé, image enhancement, video generation) opt-out — contrôle marque strict maintenu. Refresh 1-pour-1 des assets les moins performants à planifier en août pour préserver la phase d'apprentissage.</div>
+
+    <div class="subsection-title">FR Retargeting DGen BOF <span class="new-tag">NOUVEAU</span> — lancement maîtrisé</div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Métrique</th><th class="td-right">Juillet 1–31</th></tr></thead>
+      <tbody>
+        <tr><td>Dépense</td><td class="td-right">IDR 9,29M</td></tr>
+        <tr><td>Clics</td><td class="td-right">1 778</td></tr>
+        <tr><td>Ventes (wetracked)</td><td class="td-right">38,98</td></tr>
+        <tr><td>Revenus (wetracked)</td><td class="td-right">IDR 38,6M</td></tr>
+        <tr><td><strong>ROAS (wetracked)</strong></td><td class="td-right"><strong>4,15x ✅</strong></td></tr>
+        <tr><td>CPA</td><td class="td-right">IDR 238 420</td></tr>
+      </tbody>
+    </table></div>
+    <p style="margin:10px 0;color:#444;">Campagne lancée le 1er juillet avec un tROAS cible de 350%. Résultat : <strong>4,15x wetracked</strong> — au-dessus de la cible. Format Demand Gen Video, audiences incluses : Product viewers, Cart abandoners, All visitors ; audiences exclues : Purchasers, Past buyers, All converters. Male + Unknown démographiques exclus. Budget IDR 400k/j — <strong>campagne actuellement limitée par le budget</strong>. Marge de scale évidente.</p>
+
+    <div class="subsection-title">FR NB Search — Competitors : restructure Sandwich</div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Période</th><th class="td-right">Dépense</th><th class="td-right">ROAS (wetracked)</th><th class="td-right">Ventes</th></tr></thead>
+      <tbody>
+        <tr><td>Pré-restructure (1–6 juillet)</td><td class="td-right">IDR 4,02M</td><td class="td-right">0,00x</td><td class="td-right">0</td></tr>
+        <tr><td>Post-restructure (7–31 juillet)</td><td class="td-right">IDR 24,68M</td><td class="td-right">1,01x</td><td class="td-right">27,95</td></tr>
+        <tr><td><strong>Juillet total</strong></td><td class="td-right">IDR 28,70M</td><td class="td-right">0,87x</td><td class="td-right">27,95</td></tr>
+      </tbody>
+    </table></div>
+    <p style="margin:10px 0;color:#444;">Restructure Sandwich exécutée le 7 juillet : 4 ad groups fragmentés pausés, remplacés par un ad group unique « Tous les Concurrents » (14 mots-clés : 7 broad + 7 exact sur Luxeol, Rene Furterer, Lashile, Arbuti, Forcapil, Phyto, Oenobiol). Bid strategy passée en Maximize Clicks (puis Maximize Conversions le 22 juillet), budget doublé à IDR 1M/j. Résultat : sortie de l'état zéro (0 ventes → 27,95 ventes). La campagne est encore sous rentabilité (1,01x post-restructure), mais opérationnelle.</p>
+    <div class="highlight info"><strong>SQR hygiene continue en août.</strong> Les rapports de termes de recherche montrent que le broad match capture encore quelques requêtes de marque (« silk hair batana », « batana+ », « huile batana »). Poursuivre l'ajout de négatifs exact ([batana], [silk hair], [batana+]) pour recentrer progressivement le budget sur les vrais concurrents. Auction insights : luxeol.com domine à 25,3% IS, amazon.fr à 12,2% — nous restons sous 10% d'IS, normal pour une campagne fraîchement restructurée. <strong>Leviers pour gagner de l'IS en août :</strong> hausse contrôlée du Max CPC ad group (25k → 35k), ajout de variants RSA supplémentaires (angles prix, sécurité, résultats), et si possible landing pages dédiées « alternative naturelle ». Le vrai levier structurel reste le volume de conversions — plus la stratégie Max Conversions accumule de signal, plus elle enchérira efficacement.</div>
+  </div>
+
+  <!-- 5 -->
+  <div class="section">
+    <div class="section-header"><div class="section-number">5</div><div class="section-title">Toutes les optimisations de juillet 2026</div></div>
+    <p style="margin-bottom:6px;color:#444;">Mois de consolidation et de correction fine.</p>
+
+    <div class="action-item"><div><div class="action-title">Lancement FR Retargeting DGen BOF</div><div class="action-desc">Nouvelle campagne Demand Gen Video, tROAS 350%, budget IDR 400k/j. Audiences : Product viewers, Cart abandoners, All visitors. Exclusions : Purchasers, Past buyers. Résultat immédiat : 4,15x ROAS wetracked.</div></div></div>
+
+    <div class="action-item"><div><div class="action-title">PMax — verrouillage de la configuration marque</div><div class="action-desc">Final URL Expansion désactivé. Opt-out complet des Google AI Assets (Automated Text, Image Enhancement, Video Generation). Contrôle marque strict maintenu.</div></div></div>
+
+    <div class="action-item"><div><div class="action-title">NB Shopping renommée « Huile de Batana Pure » + baisse Max CPC</div><div class="action-desc">Renommage pour clarifier le focus produit. Ad group Max CPC de IDR 120k → 35k. SKU CPC alignés. Résultat post-baisse : ROAS 1,55x → 2,03x (+31%).</div></div></div>
+
+    <div class="action-item"><div><div class="action-title">Expansion — recalibration secondaire des SKUs</div><div class="action-desc">Sérum Max CPC 20k → 3k (générera 22,35x ROAS). Coffret 20k → 3k. Shampoing bleeder 14,8k → 20k puis 4k le 28/07. Coffret exclus définitivement le 28/07. Turnaround global : 0,77x → 3,19x.</div></div></div>
+
+    <div class="action-item"><div><div class="action-title">Application de la liste négative COMPETITORS à 6 campagnes</div><div class="action-desc">Liste de négatifs partagée déployée pour éviter le cannibalisme inter-campagnes.</div></div></div>
+
+    <div class="action-item"><div><div class="action-title">Restructure Sandwich de la campagne Competitors</div><div class="action-desc">4 ad groups fragmentés pausés, remplacés par « Tous les Concurrents » (14 mots-clés broad + exact sur Luxeol, Rene Furterer, Lashile, Arbuti, Forcapil, Phyto, Oenobiol). Bid strategy → Maximize Clicks. Budget doublé à IDR 1M/j. RSA « Alternative 100% Naturelle » lancée.</div></div></div>
+
+    <div class="action-item"><div><div class="action-title">Colonnes personnalisées wetracked créées</div><div class="action-desc">Charles a créé les colonnes « Sales (wetracked) », « Revenue (wetracked) », « ROAS (wetracked) » — source de vérité unique pour tout le reporting.</div></div></div>
+
+    <div class="action-item"><div><div class="action-title">Discipline budgétaire seconde moitié de mois</div><div class="action-desc">Dépense journalière réduite de -25% (13,9M/j → 10,4M/j) pour protéger le ROAS pendant les apprentissages simultanés (Retargeting BOF, Competitors, tROAS NB Search).</div></div></div>
+
+    <div class="action-item"><div><div class="action-title">Competitors — passage en Maximize Conversions le 22 juillet</div><div class="action-desc">Après stabilisation post-Sandwich, bascule de Maximize Clicks → Maximize Conversions. 20 négatifs exact ajoutés pour bloquer les requêtes non pertinentes. Liste négative « Brand » appliquée.</div></div></div>
+
+    <div class="action-item"><div><div class="action-title">Correction incident feed Merchant Center (Huile de Batana Pure)</div><div class="action-desc">Overlay promotionnel identifié via l'alerte GMC et corrigé rapidement. Diffusion revenue à la normale.</div></div></div>
+  </div>
+
+  <!-- 6 -->
+  <div class="section">
+    <div class="section-header"><div class="section-number">6</div><div class="section-title">Objectifs ROAS — réel juillet vs cible</div></div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Campagne</th><th class="td-right">Réel juin (wetracked)</th><th class="td-right">Objectif juillet</th><th class="td-right">Réel juillet (wetracked)</th><th>Statut</th></tr></thead>
+      <tbody>
+        <tr><td><strong>FR Brand Shopping</strong></td><td class="td-right">50,75x</td><td class="td-right">≥ 40x</td><td class="td-right">91,22x</td><td><span class="badge badge-green">Dépassé ✅</span></td></tr>
+        <tr><td><strong>FR Brand Search</strong></td><td class="td-right">11,29x</td><td class="td-right">≥ 12x</td><td class="td-right">11,86x</td><td><span class="badge badge-green">Atteint ✅</span></td></tr>
+        <tr><td><strong>FR NB Search — Huile de Batana</strong></td><td class="td-right">1,49x</td><td class="td-right">≥ 1,75x</td><td class="td-right">1,56x</td><td><span class="badge badge-amber">Trajectoire positive</span></td></tr>
+        <tr><td><strong>FR NB Shopping — Huile de Batana Pure</strong></td><td class="td-right">1,55x</td><td class="td-right">≥ 1,50x</td><td class="td-right">1,93x</td><td><span class="badge badge-green">Dépassé ✅</span></td></tr>
+        <tr><td><strong>NB Shopping — Expansion</strong></td><td class="td-right">0,77x</td><td class="td-right">≥ 1,00x</td><td class="td-right">3,19x</td><td><span class="badge badge-green">Turnaround ✅</span></td></tr>
+        <tr><td><strong>Silkhair Demand Gen FR</strong></td><td class="td-right">3,17x</td><td class="td-right">≥ 1,80x</td><td class="td-right">2,20x</td><td><span class="badge badge-green">Atteint ✅</span></td></tr>
+        <tr><td><strong>FR NB PMax Batana+</strong></td><td class="td-right">3,07x</td><td class="td-right">≥ 2,00x</td><td class="td-right">2,83x</td><td><span class="badge badge-green">Dépassé ✅</span></td></tr>
+        <tr><td><strong>FR Retargeting DGen BOF</strong></td><td class="td-right">—</td><td class="td-right">≥ 3,00x</td><td class="td-right">4,15x</td><td><span class="badge badge-green">Dépassé ✅</span></td></tr>
+        <tr><td><strong>FR NB Search — Competitors</strong></td><td class="td-right">—</td><td class="td-right">≥ 1,00x</td><td class="td-right">0,87x</td><td><span class="badge badge-amber">Apprentissage</span></td></tr>
+      </tbody>
+    </table></div>
+    <p style="font-size:12px;color:#888;margin-top:10px;">7 objectifs sur 9 atteints ou dépassés. NB Search en trajectoire positive. Competitors en apprentissage post-restructure.</p>
+  </div>
+
+  <!-- 7 -->
+  <div class="section">
+    <div class="section-header"><div class="section-number">7</div><div class="section-title">Plan d'action — Août 2026</div></div>
+
+    <div class="june-card"><span class="june-priority badge badge-amber">Priorité haute</span><div class="june-body"><div class="june-title">Huile de Batana Pure — audit feed hebdomadaire</div><div class="june-desc">Mettre en place un audit feed hebdomadaire (produits éligibles, cohérence prix/promos, overlays promotionnels). Revue préventive des overlays pour anticiper les alertes GMC.</div></div></div>
+
+    <div class="june-card"><span class="june-priority badge badge-amber">Priorité haute</span><div class="june-body"><div class="june-title">Scaling Retargeting DGen BOF</div><div class="june-desc">Campagne à 4,15x ROAS mais limitée par le budget à IDR 400k/j. Augmenter le budget graduellement à IDR 800k–1M/j pour libérer le volume. Tester en parallèle un format « Image & Products Ad » (carousel dynamique) contre le Video actuel.</div></div></div>
+
+    <div class="june-card"><span class="june-priority badge badge-amber">Priorité haute</span><div class="june-body"><div class="june-title">Competitors — négatifs exact pour recentrer le budget</div><div class="june-desc">Le broad match capte des requêtes de marque au lieu des concurrents. Ajouter [batana], [silk hair], [batana+], [huile batana] en négatifs exact sur cette campagne pour forcer le budget vers les termes concurrents. Objectif : atteindre 1,20x+ ROAS en août.</div></div></div>
+
+    <div class="june-card"><span class="june-priority badge badge-amber">Priorité haute</span><div class="june-body"><div class="june-title">Expansion — hausse budget +20% (500k → 600k/j) + Box Surprise</div><div class="june-desc">La campagne tourne à 3,19x ROAS avec 77,9% de Search IS perdue au budget. Première étape prudente : porter le budget à IDR 600k/j pour valider la réponse au scaling avant hausses ultérieures. En parallèle, baisser la Box Surprise Max CPC de 35k vers 15–20k (55% du budget à seulement 1,17x). Le Sérum à 22,35x reste le moteur.</div></div></div>
+
+    <div class="june-card"><span class="june-priority badge badge-blue">Priorité moyenne</span><div class="june-body"><div class="june-title">NB Search Huile de Batana — pousser vers l'objectif 1,75x</div><div class="june-desc">1,56x en juillet, stabilisation confirmée sur 4 semaines (1,48–1,61x). Prochain checkpoint tROAS mi-août : évaluer si abaisser à 155% pour libérer plus de volume ou maintenir à 165% pour consolider. Surveiller Amazon.fr (IS 25,5%, en hausse).</div></div></div>
+
+    <div class="june-card"><span class="june-priority badge badge-blue">Priorité moyenne</span><div class="june-body"><div class="june-title">DGen — production de nouveaux statics + swap 1-pour-1</div><div class="june-desc">Nouveaux statics à produire, en particulier pour remplacer les moins performants (Advertorial Static à 0,50x sur IDR 10M). Swap 1-pour-1 avec les nouveaux assets pour tester sans choquer l'algorithme et préserver la phase d'apprentissage.</div></div></div>
+
+    <div class="june-card"><span class="june-priority badge badge-blue">Priorité moyenne</span><div class="june-body"><div class="june-title">PMax — refresh 1-pour-1 des assets</div><div class="june-desc">Nouveaux assets reçus. Swap 1-pour-1 des assets les moins performants avec les nouvelles créations en août — méthode itérative pour tester sans perturber la phase d'apprentissage.</div></div></div>
+
+    <div class="june-card"><span class="june-priority badge badge-gray">Pipeline</span><div class="june-body"><div class="june-title">Extension Customer Match — segments manquants</div><div class="june-desc">Enrichir les listes existantes (déjà solides : Email subscribers, Purchased 1x, 2x+, Abandoned checkout 30d) avec les segments encore manquants : AOV élevé vs faible, récence 30/60/90 jours, et acheteurs par ligne de produits. Objectif : plus de signal pour le Smart Bidding et le prospecting Lookalike.</div></div></div>
+  </div>
+
+
+  <!-- Thank You Page -->
+  <div class="section" style="background:#0f1929; color:#e8e8e8; padding:80px 40px; margin-top:40px; border-radius:12px; text-align:center;">
+    <div style="max-width:600px; margin:0 auto;">
+      <div class="cover-logo" style="justify-content:center; margin-bottom:24px;">
+        <div class="cover-logo-circles"><div class="c1"></div><div class="c2"></div><div class="c3"></div></div>
+      </div>
+      <div style="font-size:13px; letter-spacing:2px; color:#a0a4a8; margin-bottom:6px;">KATCHINGG MEDIA</div>
+      <div style="font-size:14px; color:#a0a4a8; margin-bottom:60px;">Google Ads pour l'eCom</div>
+      <h2 style="color:#ffffff; font-size:36px; margin-bottom:24px; font-weight:600;">Merci pour votre confiance.</h2>
+      <p style="color:#c8ccd0; font-size:15px; line-height:1.7; margin-bottom:50px;">
+        Ce rapport a été préparé avec soin et attention à chaque point de données.<br>
+        Nous sommes pleinement engagés dans la croissance du compte SilkHair et nous réjouissons de partager les résultats d'août.
+      </p>
+      <div style="display:flex; justify-content:center; gap:0; max-width:500px; margin:0 auto; background:#1a2540; border-radius:8px; overflow:hidden;">
+        <div style="flex:1; padding:24px; border-right:1px solid #2a3550;">
+          <div style="font-size:11px; letter-spacing:1.5px; color:#a0a4a8; margin-bottom:8px;">PRÉPARÉ PAR</div>
+          <div style="font-size:18px; color:#ffffff; font-weight:600; margin-bottom:4px;">Diana</div>
+          <div style="font-size:13px; color:#a0a4a8;">Media Buyer</div>
+        </div>
+        <div style="flex:1; padding:24px;">
+          <div style="font-size:11px; letter-spacing:1.5px; color:#a0a4a8; margin-bottom:8px;">VÉRIFIÉ PAR</div>
+          <div style="font-size:18px; color:#ffffff; font-weight:600; margin-bottom:4px;">Charles Perot</div>
+          <div style="font-size:13px; color:#a0a4a8;">Manager, Katchingg Media</div>
+        </div>
+      </div>
+      <div style="width:120px; height:3px; background:linear-gradient(90deg, #3b82f6, #10b981, #f59e0b); margin:50px auto 0;"></div>
+    </div>
+  </div>
+
+  <div class="report-footer">
+    <div>Katchingg Media — Google Ads pour l'eCom &nbsp;|&nbsp; Diana &nbsp;|&nbsp; Charles Perot</div>
+    <div>SilkHair · 1–31 juillet 2026 · Données Google Ads (IDR) · Colonnes personnalisées wetracked (Sales, Revenue, ROAS)</div>
+  </div>
+
+</div>
+</body>
+</html>
